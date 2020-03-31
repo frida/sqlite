@@ -11,6 +11,7 @@ install_headers('sqlite3.h', 'sqlite3ext.h')
 
 sqinc = include_directories('.')
 sqlite = library('sqlite3', 'sqlite3.c',
+    c_args : ['-DSQLITE_ENABLE_JSON1'],
     include_directories : sqinc,
     dependencies : [thread_dep, dl_dep],
     install : true)
