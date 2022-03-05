@@ -24,3 +24,5 @@ pkg.generate(filebase : 'sqlite3',
     version : meson.project_version(),
     description : 'SQL database engine',
     libraries : [sqlite])
+
+meson.override_dependency('sqlite3', sqlite_dep)
