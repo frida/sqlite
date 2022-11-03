@@ -1,5 +1,5 @@
 project('sqlite', 'c',
-    version : '3.36.0',
+    version : '3.39.4',
     license : 'pd')
 
 thread_dep = dependency('threads')
