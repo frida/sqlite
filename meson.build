@@ -5,6 +5,11 @@ project('sqlite', 'c',
 thread_dep = dependency('threads')
 
 cc = meson.get_compiler('c')
+
+if meson.is_subproject() and cc.get_argument_syntax() != 'msvc'
+  add_project_arguments('-w', language: 'c')
+endif
+
 dl_dep = cc.find_library('dl', required: false)
 
 install_headers('sqlite3.h', 'sqlite3ext.h')
