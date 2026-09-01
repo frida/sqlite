@@ -15,8 +15,14 @@ dl_dep = cc.find_library('dl', required: false)
 install_headers('sqlite3.h', 'sqlite3ext.h')
 
 sqinc = include_directories('.')
+
+sqlite_c_args = ['-DSQLITE_ENABLE_JSON1']
+if get_option('default_library') != 'static' and cc.get_argument_syntax() == 'msvc'
+  sqlite_c_args += '-DSQLITE_API=__declspec(dllexport)'
+endif
+
 sqlite = library('sqlite3', 'sqlite3.c',
-    c_args : ['-DSQLITE_ENABLE_JSON1'],
+    c_args : sqlite_c_args,
     include_directories : sqinc,
     dependencies : [thread_dep, dl_dep],
     install : true)
